@@ -1,0 +1,160 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 37,
+    "modules-left": [
+        "custom/appmenu",
+        "clock",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "network",
+        "bluetooth",
+        "cpu",
+        "battery",
+        "backlight",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "tray",
+        "custom/theme",
+        "custom/themeLD"
+    ],
+    "custom/theme": {
+        "exec": "~/.config/waybar/scripts/theme",
+        "return-type": "json",
+        "interval": 30,
+        "format": "{}",
+        "on-click": "~/.config/waybar/scripts/theme vswitch",
+        "tooltip": true
+    },
+    "custom/themeLD": {
+        "format": "󰐾",
+        "on-click": "~/.config/waybar/scripts/LDModeSwitch light",
+        "tooltip": false
+    },
+    "custom/appmenu": {
+        "format": "菜单",
+        "format-icon": "󰻀",
+        "rotate": 0,
+        "on-click": "~/.config/waybar/scripts/runwofi.sh"
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%m月%d日|%H:%M}",
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": [
+            "󰃞",
+            "󰃟",
+            "󰃠"
+        ],
+        "on-scroll-up": "~/.config/waybar/scripts/backlight --inc",
+        "on-scroll-down": "~/.config/waybar/scripts/backlight --dec",
+        "min-length": 6
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": false,
+        "format-muted": " Muted",
+        "on-click": "~/.config/waybar/scripts/volume --toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "~/.config/waybar/scripts/volume --inc",
+        "on-scroll-down": "~/.config/waybar/scripts/volume --dec",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " Muted",
+        "on-click": "~/.config/waybar/scripts/volume --toggle-mic",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "~/.config/waybar/scripts/volume --mic-inc",
+        "on-scroll-down": "~/.config/waybar/scripts/volume --mic-dec",
+        "scroll-step": 5
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "",
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{device_alias}",
+        "tooltip-format-connected": " {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
+    }
+}
